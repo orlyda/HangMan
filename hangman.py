@@ -4,20 +4,22 @@ import random
 def the_game(mistake, word):
     word = word.replace("\n", "")
     end = bool(mistake > 0)
-    while end & len(word) > 0:
+    length=len(word)
+    while end & (length > 0):
         l = input("Insert a letter: ")
-        if len(l) > 1:
+        if len(l) != 1:
             assert Exception("You've inserted more the one letter")
         if l in word:
             print("Great, you are right")
             word.replace(l, "")
+            length=length-1
         else:
             print("This letter doesn't occur")
             mistake = mistake - 1
             print("You have " + str(mistake) + " tries")
         end = bool(mistake > 0)
 
-    if len(word) == 0:
+    if length == 0:
        print("Good job, you guessed the word")
     else:
        print("Sorry, you finished all your tries")
